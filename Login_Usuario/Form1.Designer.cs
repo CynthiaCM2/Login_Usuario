@@ -34,10 +34,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.user = new System.Windows.Forms.TextBox();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.pass = new System.Windows.Forms.TextBox();
             this.lineShape3 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.pass = new System.Windows.Forms.TextBox();
             this.muestra = new System.Windows.Forms.CheckBox();
             this.entrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,6 +86,8 @@
             this.user.TabIndex = 2;
             this.user.Text = "Ingrese su usuario";
             this.user.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.user.Enter += new System.EventHandler(this.user_Enter);
+            this.user.Leave += new System.EventHandler(this.user_Leave);
             // 
             // shapeContainer1
             // 
@@ -100,13 +102,13 @@
             this.shapeContainer1.TabIndex = 3;
             this.shapeContainer1.TabStop = false;
             // 
-            // lineShape1
+            // lineShape3
             // 
-            this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 0;
-            this.lineShape1.X2 = 75;
-            this.lineShape1.Y1 = 0;
-            this.lineShape1.Y2 = 23;
+            this.lineShape3.Name = "lineShape3";
+            this.lineShape3.X1 = 80;
+            this.lineShape3.X2 = 294;
+            this.lineShape3.Y1 = 254;
+            this.lineShape3.Y2 = 254;
             // 
             // lineShape2
             // 
@@ -115,6 +117,14 @@
             this.lineShape2.X2 = 293;
             this.lineShape2.Y1 = 188;
             this.lineShape2.Y2 = 188;
+            // 
+            // lineShape1
+            // 
+            this.lineShape1.Name = "lineShape1";
+            this.lineShape1.X1 = 0;
+            this.lineShape1.X2 = 75;
+            this.lineShape1.Y1 = 0;
+            this.lineShape1.Y2 = 23;
             // 
             // pass
             // 
@@ -126,14 +136,8 @@
             this.pass.TabIndex = 4;
             this.pass.Text = "Ingrese su contraseña";
             this.pass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lineShape3
-            // 
-            this.lineShape3.Name = "lineShape3";
-            this.lineShape3.X1 = 80;
-            this.lineShape3.X2 = 294;
-            this.lineShape3.Y1 = 254;
-            this.lineShape3.Y2 = 254;
+            this.pass.Enter += new System.EventHandler(this.pass_Enter);
+            this.pass.Leave += new System.EventHandler(this.pass_Leave);
             // 
             // muestra
             // 
@@ -145,6 +149,7 @@
             this.muestra.TabIndex = 5;
             this.muestra.Text = "Mostrar";
             this.muestra.UseVisualStyleBackColor = true;
+            this.muestra.CheckedChanged += new System.EventHandler(this.muestra_CheckedChanged);
             // 
             // entrar
             // 
@@ -188,6 +193,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Registrarme";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -206,6 +212,7 @@
             this.Controls.Add(this.shapeContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);

@@ -1,13 +1,16 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Login_Usuario.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
 
 namespace Login_Usuario
 {
@@ -18,21 +21,22 @@ namespace Login_Usuario
             InitializeComponent();
         }
 
+        SqlConnection conexion = new SqlConnection("server = LAPTOP-FM7HKCC1; Database = Login_Usuario; Trusted_Connection=True;");
         private void guardar_Click(object sender, EventArgs e)
         {
-            MySqlConnection con = new MySqlConnection("server = LAPTOP-FM7HKCC1; Database = SC_Tienda");
+            
             try
             {
-                con.Open();
+                conexion.Open();
             }
-            catch (MySqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show("Error" + ex.ToString());
                 throw;
             }
 
-            string sql = "insert into users(user,pass) values ('" + n_user.Text + "', '" + n_pass.Text + "')";
-            MySqlCommand cmd = new MySqlCommand(sql,con);
+            string sql = "insert into usuario(Nombre,Clave) values ('" + usuario2.Text + "', '" + contraseña2.Text + "')";
+            SqlCommand cmd = new SqlCommand(sql,conexion);
             try
             {
                 cmd.ExecuteNonQuery();
@@ -42,7 +46,7 @@ namespace Login_Usuario
                 n1.Show();
 
             }
-            catch (MySqlException ex) { MessageBox.Show("Error" + ex.ToString()); }
+            catch (SqlException ex) { MessageBox.Show("Error" + ex.ToString()); }
             
 
         }
@@ -51,5 +55,11 @@ namespace Login_Usuario
         {
 
         }
+
+        private void usuario2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

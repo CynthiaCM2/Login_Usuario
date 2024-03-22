@@ -7,10 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Login_Usuario.Models;
+
 
 namespace Login_Usuario
 {
+
+    
     public partial class Form1 : Form
     {
         public Form1()
@@ -18,50 +23,100 @@ namespace Login_Usuario
             InitializeComponent();
         }
 
+        SqlConnection conexion = new SqlConnection("server = LAPTOP-FM7HKCC1; Database = Login_Usuario; Trusted_Connection=True;");
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
         private void entrar_Click(object sender, EventArgs e)
         {
-            string nombre, contraseña;
-            nombre = user.Text;
-            contraseña = pass.Text;
-            MySqlConnection con = new MySqlConnection("server = LAPTOP-FM7HKCC1; Database = SC_Tienda");
-            try
-            {
-                con.Open();
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error" + ex.ToString());
-                throw;
-            }
-            String sql = "select user,pass from users where user = '" + nombre + "' AND pass = '" + contraseña + "' ";
-            MySqlCommand cmd  = new MySqlCommand(sql,con);
-            MySqlDataReader read = cmd.ExecuteReader();
+            conexion.Open();
+            string consulta = "select * from usuario where Nombre = '" + user.Text + "' and Clave= '" + pass.Text + "'";
+            SqlCommand comando  = new SqlCommand(consulta,conexion);
+            SqlDataReader lector;
+            lector = comando.ExecuteReader();
 
-            if (read.Read())
+            if (lector.HasRows == true)
             {
-                this.Hide();
-                MessageBox.Show("Bienvenido " + nombre);
+                MessageBox.Show("Bienvenido");
             }
             else
             {
-                MessageBox.Show("No existe ese usuario " + nombre);
+                MessageBox.Show("No existe ese usuario ");
             }
 
-        }
-
-        private void cerrar_Click(object sender, EventArgs e)
-        {
 
         }
-
+        //
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void user_Leave(object sender, EventArgs e)
         {
-
+            if (user.Text == "")
+            {
+                user.Text = "Ingrese su usuario";
+                user.ForeColor = Color.Black;
+            }
         }
+
+        private void user_Enter(object sender, EventArgs e)
+        {
+            if (user.Text == "Ingrese su usuario")
+            {
+                user.Text = "";
+                user.ForeColor = Color.Black;
+            }
+        }
+
+        private void pass_Leave(object sender, EventArgs e)
+        {
+            if (pass.Text == "")
+            {
+                pass.Text = "Ingrese su contraseña";
+                pass.ForeColor = Color.Black;
+                pass.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void pass_Enter(object sender, EventArgs e)
+        {
+            if (pass.Text == "Ingrese su contraseña")
+            {
+                pass.Text = "";
+                pass.ForeColor= Color.Black;
+                pass.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void muestra_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!muestra.Checked == true)
+            {
+                pass.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                pass.UseSystemPasswordChar = true;
+            }
+
+            
+        }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Registro r = new Registro();
+            r.Show();
+            this.Hide();
+        }
+        
+      
     }
 }

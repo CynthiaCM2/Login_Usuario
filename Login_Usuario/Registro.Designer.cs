@@ -1,4 +1,6 @@
-﻿namespace Login_Usuario
+﻿using System;
+
+namespace Login_Usuario
 {
     partial class Registro
     {
@@ -37,6 +39,8 @@
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.guardar = new System.Windows.Forms.Button();
+            this.usuario2 = new System.Windows.Forms.TextBox();
+            this.contraseña2 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +131,26 @@
             this.guardar.TabIndex = 7;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = false;
+            
+            // 
+            // usuario2
+            // 
+            this.usuario2.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuario2.Location = new System.Drawing.Point(162, 84);
+            this.usuario2.Name = "usuario2";
+            this.usuario2.Size = new System.Drawing.Size(215, 28);
+            this.usuario2.TabIndex = 8;
+            this.usuario2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.usuario2.TextChanged += new System.EventHandler(this.usuario2_TextChanged);
+            // 
+            // contraseña2
+            // 
+            this.contraseña2.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contraseña2.Location = new System.Drawing.Point(162, 154);
+            this.contraseña2.Name = "contraseña2";
+            this.contraseña2.Size = new System.Drawing.Size(215, 28);
+            this.contraseña2.TabIndex = 9;
+            this.contraseña2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Registro
             // 
@@ -134,6 +158,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(477, 320);
+            this.Controls.Add(this.contraseña2);
+            this.Controls.Add(this.usuario2);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.pass2);
             this.Controls.Add(this.user2);
@@ -141,11 +167,17 @@
             this.Controls.Add(this.shapeContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Registro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         #endregion
@@ -158,5 +190,7 @@
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         private System.Windows.Forms.Button guardar;
+        private System.Windows.Forms.TextBox usuario2;
+        private System.Windows.Forms.TextBox contraseña2;
     }
 }
