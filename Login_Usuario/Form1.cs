@@ -43,7 +43,7 @@ namespace Login_Usuario
                 MessageBox.Show("Error" + ex.ToString());
                 throw;
             }
-            String sql  = "select * from usuario where user = '" + Nombre + "' AND clave = '" + Clave + "'";
+            String sql  = "select * from usuario where nombre = '" + Nombre + "' AND clave = '" + Clave + "'";
             SqlCommand cmd = new SqlCommand(sql,conexion);
             SqlDataReader read = cmd.ExecuteReader();
             //"select user, pass from usuario = user '" + Nombre + "' AND pass = '" + Clave + "'";
