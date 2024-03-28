@@ -23,7 +23,7 @@ namespace Login_Usuario.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-FM7HKCC1; Database=Login_Usuario;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-FM7HKCC1;Database= Login_Usuario;Trusted_Connection=True;");
             }
         }
 
@@ -47,14 +47,9 @@ namespace Login_Usuario.Models
 
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.HasKey(e => e.Idusuario)
-                    .HasName("PK__usuario__080A97432DF5E4F4");
+                entity.HasNoKey();
 
                 entity.ToTable("usuario");
-
-                entity.Property(e => e.Idusuario)
-                    .HasColumnName("idusuario")
-                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Clave).HasMaxLength(50);
 

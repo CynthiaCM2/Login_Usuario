@@ -18,7 +18,7 @@ namespace Login_Usuario
     
     public partial class Form1 : Form
     {
-         public Form1()
+        public Form1()
         {
             InitializeComponent();
         }
@@ -43,18 +43,18 @@ namespace Login_Usuario
                 MessageBox.Show("Error" + ex.ToString());
                 throw;
             }
-            String sql  = "select user, pass from usuario = '" + Nombre + "' AND pass = '" + Clave + "'";
+            String sql  = "select * from usuario where user = '" + Nombre + "' AND clave = '" + Clave + "'";
             SqlCommand cmd = new SqlCommand(sql,conexion);
             SqlDataReader read = cmd.ExecuteReader();
-
+            //"select user, pass from usuario = user '" + Nombre + "' AND pass = '" + Clave + "'";
             if (read.Read())
             {
-                this.Hide();
+                //this.Hide();//
                 MessageBox.Show("Bienvenido" + Nombre);
             }
             else
             {
-                MessageBox.Show("No existe este usuario" + Nombre);
+                MessageBox.Show("No existe este usuario"  + Nombre);
             }
            
 

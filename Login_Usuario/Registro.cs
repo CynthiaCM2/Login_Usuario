@@ -41,7 +41,7 @@ namespace Login_Usuario
             {
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("USUARIO REGISTRADO");
-                this.Hide();
+                //this.Hide();//
                 Form1 n1 = new Form1();
                 n1.Show();
 
