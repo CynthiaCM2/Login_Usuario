@@ -131,7 +131,7 @@ namespace Login_Usuario
             this.guardar.TabIndex = 7;
             this.guardar.Text = "Guardar";
             this.guardar.UseVisualStyleBackColor = false;
-            
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
             // usuario2
             // 

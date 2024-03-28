@@ -18,7 +18,7 @@ namespace Login_Usuario
     
     public partial class Form1 : Form
     {
-        public Form1()
+         public Form1()
         {
             InitializeComponent();
         }
@@ -30,20 +30,33 @@ namespace Login_Usuario
         }
         private void entrar_Click(object sender, EventArgs e)
         {
-            conexion.Open();
-            string consulta = "select * from usuario where Nombre = '" + user.Text + "' and Clave= '" + pass.Text + "'";
-            SqlCommand comando  = new SqlCommand(consulta,conexion);
-            SqlDataReader lector;
-            lector = comando.ExecuteReader();
-
-            if (lector.HasRows == true)
+            string Nombre, Clave;
+            Nombre = user.Text;
+            Clave = pass.Text;
+            SqlConnection conexion = new SqlConnection("server = LAPTOP-FM7HKCC1; Database = Login_Usuario; Trusted_Connection=True;");
+            try
             {
-                MessageBox.Show("Bienvenido");
+                conexion.Open();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error" + ex.ToString());
+                throw;
+            }
+            String sql  = "select user, pass from usuario = '" + Nombre + "' AND pass = '" + Clave + "'";
+            SqlCommand cmd = new SqlCommand(sql,conexion);
+            SqlDataReader read = cmd.ExecuteReader();
+
+            if (read.Read())
+            {
+                this.Hide();
+                MessageBox.Show("Bienvenido" + Nombre);
             }
             else
             {
-                MessageBox.Show("No existe ese usuario ");
+                MessageBox.Show("No existe este usuario" + Nombre);
             }
+           
 
 
         }
@@ -95,11 +108,11 @@ namespace Login_Usuario
         {
             if (!muestra.Checked == true)
             {
-                pass.UseSystemPasswordChar = false;
+                pass.UseSystemPasswordChar = true;
             }
             else
             {
-                pass.UseSystemPasswordChar = true;
+                pass.UseSystemPasswordChar = false;
             }
 
             
@@ -116,7 +129,7 @@ namespace Login_Usuario
             r.Show();
             this.Hide();
         }
-        
-      
+
+       
     }
 }

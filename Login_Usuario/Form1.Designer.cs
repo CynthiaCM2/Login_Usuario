@@ -167,6 +167,7 @@
             this.entrar.TabIndex = 6;
             this.entrar.Text = "Entrar";
             this.entrar.UseVisualStyleBackColor = false;
+            this.entrar.Click += new System.EventHandler(this.entrar_Click);
             // 
             // label1
             // 
